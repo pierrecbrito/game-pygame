@@ -43,6 +43,13 @@ class Index(Screen):
                 pygame.mixer.music.stop()
                 pygame.mixer.music.unload()
                 return 2
+            
+            return_to_levels = self.btn_levels.focusCheck(pygame.mouse.get_pos(), pygame.mouse.get_pressed())
+            if(return_to_levels):
+                self.endCurrentScreen()
+                pygame.mixer.music.stop()
+                pygame.mixer.music.unload()
+                return 3
 
             return_to_exit = self.btn_exit.focusCheck(pygame.mouse.get_pos(), pygame.mouse.get_pressed());
             if(return_to_exit):  

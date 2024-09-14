@@ -1,8 +1,6 @@
 from pages.screen import Screen
 import pygame
 from elements.button import Button
-from util import path_assets
-from elements.Missile import Missile
 
 class About(Screen):
  
@@ -18,10 +16,10 @@ class About(Screen):
             # Informações textuais sobre o jogo
             self.text_lines = [
                 "Defense Tower",
-                "Version 1.0",
-                "@pierrecbrito",
-                "Objective: Defend the tower against enemy missiles.",
-                "Controls: Use the mouse to direct the missiles.",
+                "Game developed at Kodland's request in a selection process for tutor. by @pierrecbrito",
+                "Objective: Destroy the PC player at each level (up to level 10) by hitting missiles at their base. Each missile can damage the enemy by 10 points of health.",
+                "You can also intercept missiles coming towards your base, but each player has a limit of 10 missiles in the air.",
+                "Control: use the mouse and click on point 1 where the missile should go and on the second point where the missile should hit (a missile is launched every two mouse clicks).",
                 "Good luck and have fun!"
             ]
 
