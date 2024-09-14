@@ -72,8 +72,8 @@ class Game(Screen):
                     self.all_missiles.clear()
                     self.your_missiles.empty()
                     self.pc_missiles.empty()
-                    self.level += 1
-                    pygame.time.set_timer(self.SEND_MISSILE_EVENT, 2000 - (190 * self.level))
+                    self.level = 1
+                    pygame.time.set_timer(self.SEND_MISSILE_EVENT, 2000 -  (190 * self.level))
                 elif self.pc_points <= 0:
                     self.pc_points = 100
                     self.all_missiles.clear()
@@ -81,6 +81,9 @@ class Game(Screen):
                     self.pc_missiles.empty()
                     self.level += 1
                     pygame.time.set_timer(self.SEND_MISSILE_EVENT, 2000 -  (190 * self.level))
+            else:
+                self.endCurrentScreen()
+                return 1
                 
           
     def update_infos(self):

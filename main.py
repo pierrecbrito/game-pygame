@@ -4,6 +4,7 @@ from pages.index import Index
 from pages.game import Game
 from pages.about import About
 from pages.levels import Levels
+from pages.win import Win
 
 pygame.init()
 running = True
@@ -15,6 +16,7 @@ index_page.mount()
 game_page = Game()
 about_page = About()
 levels_page = Levels()
+win_page = Win()
 
 while running:
     for event in pygame.event.get():
@@ -47,7 +49,17 @@ while running:
         game_page.makeCurrentScreen()
         game_page.mount(start_level=return_levels)
 
-    game_page.screenUpdate()
+    return_game = game_page.screenUpdate()
+    if(return_game == 1):
+        win_page.makeCurrentScreen()
+        win_page.mount()
+    
+
+    return_win = win_page.screenUpdate()
+    if(return_win == 1):
+        index_page.makeCurrentScreen()
+        index_page.mount()
+        
     pygame.display.update()
        
 pygame.quit()
