@@ -23,25 +23,31 @@ class Game(Screen):
         # Load the background image
         self.background = pygame.image.load(path_assets / 'img/background-game.png').convert()
         self.background = pygame.transform.scale(self.background, (1200, 650))
-        self.missiles = pygame.sprite.Group()
+        self.your_missiles = pygame.sprite.Group()
+        self.pc_missiles = pygame.sprite.Group()
         self.targets = pygame.sprite.Group() 
         self.all_missiles = []
 
         if self.CurrentState:
             self.send_random_missile()
             self.SEND_MISSILE_EVENT = pygame.USEREVENT + 1
-            pygame.time.set_timer(self.SEND_MISSILE_EVENT, 300)
+            pygame.time.set_timer(self.SEND_MISSILE_EVENT, 800)
             self.font = pygame.font.Font(None, 18)  # Fonte padrão com tamanho 36
 
     def screenUpdate(self):
         if self.CurrentState:
             self.screen.blit(self.background, (0, 0))
-            self.missiles.update()
-            self.missiles.draw(self.screen)
+            self.your_missiles.update()
+            self.your_missiles.draw(self.screen)
+            self.pc_missiles.update()
+            self.pc_missiles.draw(self.screen)
 
-            for missile in self.missiles:
-                missile.check_collision(self.targets, self.missiles)
-            
+            for missile in self.your_missiles:
+                missile.check_collision(self.targets, self.pc_missiles)
+
+            for missile in self.pc_missiles:
+                missile.check_collision(self.targets, self.your_missiles)
+
             your_missiles = 0
             pc_missiles = 0
             for missile in self.all_missiles:
@@ -86,7 +92,7 @@ class Game(Screen):
                 area_y <= mousepos[1] <= area_y + area_height):
                 self.missiles_counter += 1
                 new_missile = Missile(75, 536, self.to_x1, self.to_y1, self.to_x2, self.to_y2, 15, 0.1, 80, 'You')
-                self.missiles.add(new_missile)
+                self.your_missiles.add(new_missile)
                 self.all_missiles.append(new_missile)
             self.to_x1 = -1
             self.to_y1 = -1
@@ -104,7 +110,7 @@ class Game(Screen):
         to_x2 = 75
         to_y2 = 536
         new_missile = Missile(start_x, start_y, to_x1, to_y1, to_x2, to_y2, 15, 0.10, 80, 'PC')
-        self.missiles.add(new_missile)
+        self.pc_missiles.add(new_missile)
         self.all_missiles.append(new_missile)
     
     def handle_events(self, event):
