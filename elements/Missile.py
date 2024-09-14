@@ -26,13 +26,9 @@ class Missile(pygame.sprite.Sprite):
         self.launch_sound = pygame.mixer.Sound(str(path_assets / 'music/missile-sent.mp3'))
         self.launch_sound.play()
         
-         # Carregar o som de explosão
         self.explosion_sound = pygame.mixer.Sound(str(path_assets / 'music/explosion.mp3'))
-
-        # Carregar a imagem de explosão
         self.explosion_image = pygame.image.load(str(path_assets / 'img/explosion.png')).convert_alpha()
 
-        # Calcular a direção do movimento
         dx1 = to_x1 - x
         dy1 = to_y1 - y
         distance1 = math.hypot(dx1, dy1)
@@ -43,7 +39,6 @@ class Missile(pygame.sprite.Sprite):
             self.angle1 = math.degrees(math.atan2(-dy1, dx1)) - 90
         else:
             self.angle1 = math.degrees(math.atan2(-dy1, dx1)) - 50
-
 
         if(to_x1 == to_x2 and to_y2 == to_y1):
             to_x2 += 1
@@ -71,14 +66,12 @@ class Missile(pygame.sprite.Sprite):
             self.x += self.dir_x1 * self.speed
             self.y += self.dir_y1 * self.speed
             self.rect.center = (self.x, self.y)
-            #Rotacionar a imagem do míssil
             self.image = pygame.transform.rotate(self.original_image, self.angle1)
             self.rect = self.image.get_rect(center=self.rect.center)
         elif self.route2:
             self.x += self.dir_x2 * self.speed
             self.y += self.dir_y2 * self.speed
             self.rect.center = (self.x, self.y)
-            #Rotacionar a imagem do míssil
             self.image = pygame.transform.rotate(self.original_image, self.angle2)
             self.rect = self.image.get_rect(center=self.rect.center)
         
@@ -109,18 +102,15 @@ class Missile(pygame.sprite.Sprite):
     def missile_end(self):
         if not self.end:
             self.explosion_sound.play()
-            # Mostrar a imagem de explosão
             self.image = self.explosion_image
             self.original_image = self.image
             self.rect = self.image.get_rect(center=self.rect.center)
-            # Remover o míssil após a explosão
             self.explosion_start_time = pygame.time.get_ticks()
             self.end = True
 
     def update(self):
         self.move()
-
         if self.explosion_start_time:
             current_time = pygame.time.get_ticks()
-            if current_time - self.explosion_start_time > 150:  # 1200 milissegundos (1.2 segundos)
+            if current_time - self.explosion_start_time > 150: 
                 self.kill()

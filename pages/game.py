@@ -22,7 +22,6 @@ class Game(Screen):
         self.pc_max_missiles = 10
         
     def mount(self, start_level):
-        # Load the background image
         self.background = pygame.image.load(path_assets / 'img/background-game.png').convert()
         self.background = pygame.transform.scale(self.background, (1200, 650))
         self.your_missiles = pygame.sprite.Group()
@@ -35,7 +34,7 @@ class Game(Screen):
             self.send_random_missile()
             self.SEND_MISSILE_EVENT = pygame.USEREVENT + 1
             pygame.time.set_timer(self.SEND_MISSILE_EVENT, 2000 - (190 * self.level))
-            self.font = pygame.font.Font(None, 18)  # Fonte padrão com tamanho 36
+            self.font = pygame.font.Font(None, 18) 
 
 
     def screenUpdate(self):
@@ -87,7 +86,6 @@ class Game(Screen):
                 
           
     def update_infos(self):
-        # Renderizar texto no canto superior esquerdo
         text_left = self.font.render("You", True, (255, 255, 255))
         self.screen.blit(text_left, (20, 20))
         score_left = self.font.render("Life: " + str(self.your_points), True, (255, 255, 255))
@@ -97,7 +95,6 @@ class Game(Screen):
         active_missiles_left = self.font.render("Missiles in the air: " + str(len(self.your_missiles)), True, (255, 255, 255))
         self.screen.blit(active_missiles_left, (20, 80))
 
-        # Renderizar texto no canto superior direito
         text_right = self.font.render("PC", True, (255, 255, 255))
         self.screen.blit(text_right, (self.width - 150, 20))
         score_right = self.font.render("Life: " + str(self.pc_points), True, (255, 255, 255))
@@ -137,8 +134,8 @@ class Game(Screen):
     def send_random_missile(self):
         if len(self.pc_missiles) < self.pc_max_missiles:
             self.missiles_counter += 1
-            start_x = 1123 #random.randint(0, 1200)
-            start_y = 535 #random.randint(0, 650)
+            start_x = 1123
+            start_y = 535
             to_x1 = random.randint(50, 1100)
             to_y1 = random.randint(0, 580)
             to_x2 = 75
@@ -150,7 +147,7 @@ class Game(Screen):
     def handle_events(self, event):
         if self.CurrentState:
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:  # Verifica se o botão esquerdo do mouse foi clicado
+                if event.button == 1:
                     mousepos = pygame.mouse.get_pos()
                     self.clickCheck(mousepos)
             elif event.type == self.SEND_MISSILE_EVENT:

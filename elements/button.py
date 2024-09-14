@@ -30,11 +30,6 @@ class Button():
                 self.sx and mousepos[1] >= self.y and mousepos[1]
                 <= self.sy):
            
-            # IF MOUSE BUTTON CLICK THEN
-            # NAVIGATE TO THE NEXT OR PREVIOUS TABS
             return mouseclick[0]
- 
         else:
-            # ELSE LET THE CURRENT STATE TO BE OFF
-           
             return False

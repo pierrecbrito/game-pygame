@@ -10,16 +10,13 @@ class Levels(Screen):
     def mount(self):
         if self.CurrentState:
             self.background_color = (0, 0, 0)
-            # Inicializar a fonte
-            self.font = pygame.font.Font(None, 50)  # Fonte padrão com tamanho 36
+            self.font = pygame.font.Font(None, 50)
             self.btns = []
 
     def screenUpdate(self):
         if self.CurrentState:
-            # Preencher o fundo com a cor preta
             self.screen.fill(self.background_color)
             
-            # Renderizar e desenhar o texto na tela
             y_offset = 220
             x_offset = 330
 

@@ -18,20 +18,16 @@ class Win(Screen):
                 "Congratulations.",
                 "You won the game."
             ]
-
-            
-
+    
     def screenUpdate(self):
         if self.CurrentState:
-            # Preencher o fundo com a cor preta
             self.screen.fill(self.background_color)
-            
-            # Renderizar e desenhar o texto na tela
+        
             y_offset = 230
             for line in self.text_lines:
                 text_surface = self.font.render(line, True, (255, 255, 255))
                 self.screen.blit(text_surface, (350, y_offset))
-                y_offset += 40  # Espaçamento entre as linhas de texto
+                y_offset += 40 
 
             self.btn_back = Button((0, 0, 0), 350, y_offset, 180, 45, 'to menu')
             self.btn_back.draw(self.screen, (0, 0, 0))

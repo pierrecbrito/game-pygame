@@ -10,13 +10,12 @@ class Index(Screen):
         super().__init__("Defense Tower", 1200, 650)
 
     def mount(self):
-        # Load the background image
         self.background = pygame.image.load(path_assets / 'img/background.jpeg').convert()
         self.background = pygame.transform.scale(self.background, (1200, 650))
         pygame.mixer.init()
         pygame.mixer.music.load(path_assets / 'music/drama.mp3')
         pygame.mixer.music.play(-1)
-        # Load the buttons
+
         self.btn_start = Button((0, 0, 0), 900, 200, 180, 45, 'Start')
         self.btn_levels = Button((0, 0, 0), 900, 255, 180, 45, 'Levels')
         self.btn_about = Button((0, 0, 0), 900, 310, 180, 45, 'About')
