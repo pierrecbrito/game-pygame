@@ -16,7 +16,10 @@ class Missile(pygame.sprite.Sprite):
         self.speed = speed
         self.damage = damage
         self.owner = owner
-        self.original_image = pygame.image.load(path_assets / 'img/missile.png').convert_alpha()
+        if owner == 'You':
+            self.original_image = pygame.image.load(path_assets / 'img/missile.png').convert_alpha()
+        else:
+            self.original_image = pygame.image.load(path_assets / 'img/missile-red.png').convert_alpha()
         self.image = self.original_image #pygame.image.load(path_assets / 'img/missile.png').convert()
         self.rect = self.image.get_rect(center=(x, y))
 
@@ -35,7 +38,11 @@ class Missile(pygame.sprite.Sprite):
         distance1 = math.hypot(dx1, dy1)
         self.dir_x1 = dx1 / distance1
         self.dir_y1 = dy1 / distance1
-        self.angle1 = math.degrees(math.atan2(-dy1, dx1)) - 90
+
+        if owner == 'You':
+            self.angle1 = math.degrees(math.atan2(-dy1, dx1)) - 90
+        else:
+            self.angle1 = math.degrees(math.atan2(-dy1, dx1)) - 50
 
 
         if(to_x1 == to_x2 and to_y2 == to_y1):
@@ -49,7 +56,10 @@ class Missile(pygame.sprite.Sprite):
         self.dir_x2 = dx2 / distance2
         self.dir_y2 = dy2 / distance2
 
-        self.angle2 = math.degrees(math.atan2(-dy2, dx2)) - 90
+        if owner == 'You':
+            self.angle2 = math.degrees(math.atan2(-dy2, dx2)) - 90
+        else:
+            self.angle2 = math.degrees(math.atan2(-dy2, dx2)) - 50
 
         self.route1 = True
         self.route2 = False
@@ -112,5 +122,5 @@ class Missile(pygame.sprite.Sprite):
 
         if self.explosion_start_time:
             current_time = pygame.time.get_ticks()
-            if current_time - self.explosion_start_time > 500:  # 1200 milissegundos (1.2 segundos)
+            if current_time - self.explosion_start_time > 150:  # 1200 milissegundos (1.2 segundos)
                 self.kill()

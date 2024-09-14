@@ -12,6 +12,7 @@ index_page.mount()
 
 game_page = Game()
 
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -19,8 +20,8 @@ while running:
         game_page.handle_events(event)
 
     if(index_page.screenUpdate()):
-        game_page.mount()
         game_page.makeCurrentScreen()
+        game_page.mount()
     
     game_page.screenUpdate()
 
