@@ -4,7 +4,7 @@
 Defense Tower is a game where the goal is to defend the tower against enemy missiles. Use your strategic skills to direct the missiles and protect your tower.
 
 ## Installation
-To install and run the game, follow the steps below:
+To install and run the game, follow the steps below (i hope you have Python 3 installed on your computer):
 
 1. Clone the repository:
 ```sh
