@@ -33,6 +33,12 @@ class Levels(Screen):
                     y_offset += 100
                     x_offset = 330
             
+            for btn in self.btns:
+                return_to_game = btn.focusCheck(pygame.mouse.get_pos(), pygame.mouse.get_pressed())
+                if(return_to_game):
+                    self.endCurrentScreen()
+                    return int(btn.text)
+            
             title = self.font.render("Levels", True, (255, 255, 255))
             self.screen.blit(title, (525, 50))
 
@@ -44,5 +50,5 @@ class Levels(Screen):
             if(return_to_index):
                 self.endCurrentScreen()
                 return -1
-            return 0
+        return 0
                

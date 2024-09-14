@@ -21,8 +21,7 @@ class Game(Screen):
         self.your_max_missiles = 10
         self.pc_max_missiles = 10
         
-
-    def mount(self):
+    def mount(self, start_level):
         # Load the background image
         self.background = pygame.image.load(path_assets / 'img/background-game.png').convert()
         self.background = pygame.transform.scale(self.background, (1200, 650))
@@ -30,13 +29,14 @@ class Game(Screen):
         self.pc_missiles = pygame.sprite.Group()
         self.targets = pygame.sprite.Group() 
         self.all_missiles = []
-        self.level = 1
+        self.level = start_level
 
         if self.CurrentState:
             self.send_random_missile()
             self.SEND_MISSILE_EVENT = pygame.USEREVENT + 1
-            pygame.time.set_timer(self.SEND_MISSILE_EVENT, math.floor(10000 / self.level))
+            pygame.time.set_timer(self.SEND_MISSILE_EVENT, 2000 - (190 * self.level))
             self.font = pygame.font.Font(None, 18)  # Fonte padrão com tamanho 36
+
 
     def screenUpdate(self):
         if self.CurrentState:

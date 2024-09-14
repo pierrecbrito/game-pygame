@@ -25,7 +25,7 @@ while running:
     return_index = index_page.screenUpdate()
     if(return_index == 1):
         game_page.makeCurrentScreen()
-        game_page.mount()
+        game_page.mount(1)
     elif(return_index == 2):
         about_page.makeCurrentScreen()
         about_page.mount()
@@ -43,6 +43,9 @@ while running:
     if(return_levels == -1):
         index_page.makeCurrentScreen()
         index_page.mount()
+    elif(return_levels > 0):
+        game_page.makeCurrentScreen()
+        game_page.mount(start_level=return_levels)
 
     game_page.screenUpdate()
     pygame.display.update()
