@@ -38,7 +38,8 @@ python main.py
 
 ## How to Play
 - **Objective**: Defend the tower against enemy missiles.
-- **Controls**: Use the mouse to direct the missiles. - **Instructions**:
+- **Controls**: Use the mouse to direct the missiles. 
+- **Instructions**:
 1. Click to set the first missile's waypoint.
 2. Click again to set the second missile's waypoint to hit.
 3. Watch the missiles move and attempt to intercept the enemy missiles or hit the enemy base.
