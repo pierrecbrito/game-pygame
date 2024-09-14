@@ -31,7 +31,7 @@ class Game(Screen):
         if self.CurrentState:
             self.send_random_missile()
             self.SEND_MISSILE_EVENT = pygame.USEREVENT + 1
-            pygame.time.set_timer(self.SEND_MISSILE_EVENT, 800)
+            pygame.time.set_timer(self.SEND_MISSILE_EVENT, 5000)
             self.font = pygame.font.Font(None, 18)  # Fonte padrão com tamanho 36
 
     def screenUpdate(self):
@@ -81,7 +81,6 @@ class Game(Screen):
         # Verificar se o clique está dentro de uma área específica 
         # # Verifica se o botão esquerdo do mouse foi clicado
         area_x, area_y, area_width, area_height = 0, 0, 1200, 600
-        print(mousepos[0], mousepos[1])
         if(self.to_x1 == -1):
             self.to_x1 = mousepos[0]
             self.to_y1 = mousepos[1]

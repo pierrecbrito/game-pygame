@@ -10,8 +10,8 @@ class Button():
         self.height = height
         self.text = text
         self.CurrentState = True
-        self.sx = self.x
-        self.sy = self.y - 50
+        self.sx = self.x + self.width
+        self.sy = self.y + self.height
 
     def draw(self, screen, outline=None):
         if(self.CurrentState):
@@ -26,9 +26,9 @@ class Button():
                 screen.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
     
     def focusCheck(self, mousepos, mouseclick):
-        if(mousepos[0] >= self.x and mousepos[0] <= self.x +
+        if(mousepos[0] >= self.x and mousepos[0] <= 
                 self.sx and mousepos[1] >= self.y and mousepos[1]
-                <= self.y + self.sy):
+                <= self.sy):
            
             # IF MOUSE BUTTON CLICK THEN
             # NAVIGATE TO THE NEXT OR PREVIOUS TABS
